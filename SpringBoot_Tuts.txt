@@ -1,0 +1,297 @@
+--------------------1-2-------------------------
+
+1. Need of spring + spring boot (reduced code lines to start project development)
+
+2. Spring terminologies
+    a Tight  coupling
+    b Loose coupling
+    c Dependency Injection
+    d Spring beans
+    e Application context
+    f IOC container
+    g Auto wiring
+    h Component scan
+
+3. Loose coupling and tight coupling (Introduction of interfaces)
+
+4. Some questions answered
+   a. Spring container/Spring context/IOC(all there same) -> (two types) Bean Factory and Application context
+   b. POJO vs JavaBean vs Spring Bean
+   c. Listing all beans managed by spring framework
+   d. what if multiple matching beans are available.
+
+
+5. Primary vs Qualifier annotation
+
+
+6. Types of DI : Constructor based, setter based, field
+
+7. Important terminology
+   a. @Component
+   b. Dependency
+   c. Component Scan
+   d. Dependency Injection- Spring Beans,  IOC (control shifting from coder to spring), Autowiring
+
+
+8. @Component vs @Bean
+
+
+9. Spring advanced features:
+   a. Lazy Initialization
+   b. Bean scopes
+   c. PostConstruct and PreDestory
+   d. Jakarta EE (J2EE -> Java EE -> Jakarta EE evolution)
+   e. Context and Dependency inejection
+   f. XML Configuration
+   g. Alternativesof @Components (@Service. @Controller, @Repository [these all are specalization of component])
+   h. Spring Big Picture
+   i. Spring Modules and Projects
+   j. Why spring is Popular?
+
+for h,i,j:
+WHATEVER HAS BEEN LEARNT AS OF NOW IS 'SPRING CORE' ALSO KNOWN AS  'SPRING'.
+NOW WE WILL LEARN ABOUT MORE SPRING MODULE
+    A. SPRINNG CORE- FUNDAMENTAL FEATURES (DONE)
+    B. SPRING MVC - WEB
+    C. SPRING WEBFLUX - WEB REACTIVES
+    D. SPRING JDBC - DATA ACCESS
+    E. JMS - INTEGRATION
+    F. MOCK OBJECTS, SPRING MVC TEST - TESTING
+    G. AND MORE
+
+NOT SURE IF GOING TO LEARN THESE ALL , BUT THESE ALL ARE SPRING MODULES
+
+
+
+--------------------3--------------------------
+
+10. Build tool -Maven and Gradle
+
+11. Maven commands ( compile , test-compile, clean, dependency:tree, help:effective:tree)
+
+
+--------------------4---------------------------
+
+12. Started springboot.
+   a. Spring initializer
+   b. Spring boot starter projects
+   c. Auto configuration of Spring boot
+   d. Dev tools
+
+
+
+13. Features for production ready Spring boot
+   a. Profiles (application.properties is equivalent to .env on mern)
+   b. @ConfigurationProperties
+   c. Enbedded servers
+   d. Actuators
+
+
+
+--------------------5-6-7------------------------
+
+
+14. JDBC and Spring JDBC and JPA and spring data JPA and Hibernate 
+    a. Spring h2 database > h2-console(only in spring 3 not 4) > making tables and querying in h2 console
+    b. jdbc vs spring jdbc(less code lines of java)
+    c. started off with using spring jdbc (not jdbc)
+    d. Done JPA
+    e. next is Spring data jpa
+    f. Hibernate vs jpa
+
+--------------------8-9-10------------------------
+
+15. My first web app (To do list)
+    a. SayHelloController.java :
+       .. @Controller @RequestMapping @ResponseBody 
+       .. Returning html as a response
+       .. JSP and view
+    b. LoginController.java :
+       .. Query catching + model
+       .. Logging + logger
+       .. Dispatch Servlet (This is entire working of backend when a request comes. Major steps)
+       .. Creating loginform in login.jsp
+       .. Displaying login credentials  in welcome.jsp
+       .. Authenticating user (hardcoded) in AuthenticationService.java
+    c. Todo.java(class/bean) + TodoService(Lists of todo)
+       .. Basic initialization
+       .. TodoController.java -> for getting all hardcoded todos
+       .. Request vs model vs session -> @SessionAttributes
+       .. Using jstl for better html view
+       .. Using css(bootstrap 5) -> webjars(jquery and bootstrap)
+       .. Adding a new todo task
+       .. Validation in springboot(4 steps) @Size @Valid
+       .. Deleting todo
+       .. Updating todo
+       .. Adding Target Date 
+       .. Adding navbar + jspf(fragments) to reduced redundancy
+       .. Spring Security -> renamed/changed LoginController to WelcomeController
+    d. SpringSecurityConfiguration.java:
+       .. Loginpage + Spring Security (setting up username and password of our choice :/)
+       .. Setting up new user
+       
+    e. copy existing "myfirstwebapp" to "myfirstwebappwithh2database":
+       .. adding h2+jpa to existing webapp to store todos in database.
+       .. Created Todo entity/schema (@Entity @Id @GeneratedValue) and added todos to todo table using jpa + sql queries
+       .. Creating repository
+       .. Switched from static list to actual database. gettodos, delete, update. 
+       .. Installing docker for MySQL
+          To create comtainer - >  docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=todos-user --env MYSQL_PASSWORD=dummytodos --env MYSQL_DATABASE=todos --name mysql --publish 3306:3306 mysql:8-oracle
+       .. Make changes in application.properties only to switch from h2 to MySQL.
+       .. Use 'mysqlsh' to work with the database in docker container.
+
+--------------------11--------------------------
+
+16. Rest API ->restfull-web-services:
+     a. HelloworldController.java -> @RestController @GetMapping 
+       .. Path Parameter
+     b. Social media app APIs.
+       .. DAO Object
+       .. Creating path for users -> @RequestBody
+       .. Response codes (200, 201, 400...) + Return uri of just created user   +   @ResponseStatus
+       .. Customized exception handler (Exception package)
+       .. Validation in rest api  + Exception handling for improper validation
+     c. Rest API documentation(manually + from code) + Swagger and open API
+     d. Using springdoc-openapi for documentation of our APIs
+     e. Content negotiation -> single resource multiple representation (json / xml)
+     f. Internationalization - i18n
+     g. Versioning your rest API (VersionPersonController.java):
+        .. URI versoning
+        .. Request Parameters versoning (query based)
+        .. Headers versoning
+        .. Media type versoning /Content negotiation versoning / Accept headers versoning
+     h. HATEOAS 
+     i. Customizating Rest API:
+        .. Serialization - @JsonProperty
+        .. Filtering - static(	@JsonIgnore or @JsonIgnoreProperties) + dynamic (MappingJacksonValue class with @JsonIgnore)
+     j. Spring boot actuator
+     k. HAL explorer
+     l. Creating user schmea to use h2 database
+     m. Creating UserRepository to interact with database + UserJpaResource.
+     n. Posts Rest API - @OneToMany +   @ManyToOne 
+     o. Switching to MySQL via dockers
+     p. Applying spring security
+
+--------------------12--------------------------
+
+
+17. Aspect Oriented Programming (APO) -> Spring AOP AspectJ
+     a. Setting up BusinessService1.java class to understand AOP working.
+     b. @Aspect   @Pointcut->@Before @After @AfterReturnig @AfterThrowing  @Around
+     c. Some terminologies - 
+        COMPILE TIME:
+	   .. Advice(what code to execute)
+           .. pointcut - (expression that identifies methods calls to be intercepted)
+	   .. Aspect - what(advice) + when(pointcut) is aspect
+	   .. Weaver/Weaving - framework that implements AOP (AspectJ or Spring AOP)
+        RUN TIME:
+           .. Join Point - When pointcut condition is true, advice is executed, A specifc execution instance of an advice is called a Join Point
+     d. Having a common pointcut
+     e. Creating custom annotations to run advice for selected methods
+
+18. Introduction to gradle
+
+--------------------13--------------------------
+
+19. Docker
+     a. Basic terminologies - image, container, repository, tags
+     b. Creating docker image of our springboot project
+     c. Multi Stage - creating jar file as a docker image aswell
+     d. Optimizing Dockerfile
+     e. Using spring boot maven plugin for docker image
+
+
+--------------------14--------------------------
+
+20. Junit + Unit testing - @Test  @BeforeEach  @AfterEach  @BeforeAll @AfterAll
+
+
+--------------------15--------------------------
+
+21. Introduction to full stack architecture
+
+22. React basics
+
+23. Front end of Todo App using react:
+    a. Login component, Welcome component, Error component , ListTodos Component, Header  Component, Footer  Component, Logout  Component
+    b. Authentication using useContext.
+
+
+24. Integrating frontend with backend
+    a. Creating frontend api calls -> gettAllTodos, getTodoByid, deleteTodo, updateTodo,etc
+    b. finished the implementation for all these Api calls.
+
+
+25. Basic authentication: 
+    a. using  (<artifactId>spring-boot-starter-security</artifactId>) -> gives you a default password to access al urls
+    b. created class BasicAuthenticationSecurityConfiguration.java
+    c. option request(important)
+
+
+26. JWT authentication :
+    a. Copied code/package directly (package : com.in28minutes.rest.webservices.restfulwebservices.jwt;)
+    b. Dependencies for pom : 	<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+ 			        <artifactId>spring-boot-configuration-processor</artifactId>
+    c. Lot of code, can be confusing
+    d. Even though i am using jwt token now but basic auth is still supported. My frontend is still able to make calls to this new backend
+
+
+27. Implementing jpa + hibernate
+    a. First with H2
+    b. Now with MySQL + docker
+
+
+--------------------16--------------------------
+
+28. Introduction to Mockito unit testing.
+    a. Stub
+    b. Mocks - @Mock, @InjectMocks, @ExtendWith
+
+
+--------------------17--------------------------
+
+29 Spring security in depth
+    a. Form based authentication -> session, used by default , default login/out page and /louout URL.
+    b. Basic authentication -> Base64 encoded username+password as a request header :"Basic base64encoded"
+    	NOTE: above 'a'+'b' are together available by default 
+    c. CSRF -> csrf token/ csrf token is of no use in REST(stateless), just disable csrf.
+               same site cookies : enable in application.properties
+    d. CORS           
+    e. String user credentials
+       .. storing in memory (RAM) -> UserDetailsService + InMemoryUserDetailsManager
+       .. storing in database (via JDBC in H2) -> UserDetailsService + JdbcUserDetailsManager
+    f. Encoding , Hashing and  Encryption
+    g. Storing Bcrypt Encoded passwords - BCryptPasswordEncoder 
+    h. JWT -> Creation(Encoding), sending to server(Bearer ) , getting it verified(Decoding)
+	DECODING PART is as follows:       
+       .. Using oauth2ResourceServer.java class in filterChain
+       .. Creating public + private key pair (using KeyPairGenerator) java class
+       .. Creating RSA key object using above key pair (using RSAKey class + nimbus)
+       .. Create JWKSource using above RSA key object (usuing JWKSource class)
+       .. Creating RSA public key for decoding (using JwtDecoder class)
+
+        CREATING JWT KEY/ENCODING part is as follows:
+       .. Creating jwt encoder (using JwtEncoder class + JWKSource)
+       .. Creating JWT resource for jwt token creation (via Basic auth)
+       .. Using jwt encoder for token creation (in JwtAuthenticationResource.java class)
+    i. Authenticating a request (AuthenticationManager class)
+    j. Security Authorization -> Globl security  + Method security(@Pre/@post and jsr250)
+
+
+--------------------18--------------------------
+
+30. Getting started with OAuth(logging in with google id)
+
+31. AWS
+    a. creating account using root user id
+    b. creating IAM user id
+    c. Created EC2 instance(virtual machine) then terminated it after playing (imp)
+    d. Installing apache (web server) in the instance
+    e. Some terminologies : AMI , instance families, instance size, elastic block store,  security group, key pair
+    f. IAAS vs PAAS
+    g. AWS Elastic Beanstalk
+    h. Microservices + Dockers
+    i. Elastic Container Service (ECS) for docker containers
+    j. Serverless service -> AWS Lambda
+
+32 .Deploying rest API application in AWS
