@@ -295,3 +295,25 @@ NOT SURE IF GOING TO LEARN THESE ALL , BUT THESE ALL ARE SPRING MODULES
     j. Serverless service -> AWS Lambda
 
 32 .Deploying rest API application in AWS
+
+
+--------------------JWT complete working/flow------------------------
+
+A. Token Generation part
+	
+	User logs in:
+		a. AuthController.java -> Checks username in DB and returns token.
+					  Uses AuthentucationManager present in SecurityConfig.java	
+			  		  Uses JwtTokenService.java
+		b. JwtTokenService -> Creates JWT with necessary information
+                		      Uses JwtEncoder present in SecurityConfig.java
+
+	Note: Now the users gets token in response after entering username and password. Now is the authentication of the JWT that users sends with every request
+
+B. Authentication of jwt token 
+
+		a. SecurityConfig.java -> has http.oauth2ResourceServer that checks whether jwt token is there or not.
+                		          AuthenticationManager checks whether username exists or not in DB  
+ 			    		  RSAKey(public + private key) -> private key for signing jwt
+ 						 			  public key for verifying jwt.
+			  		  In this class there are other methods too (KeyPair, JWKSource, JwtEncoder, JwtDecoder), which are used in jwt creation and verification internally by spring security.

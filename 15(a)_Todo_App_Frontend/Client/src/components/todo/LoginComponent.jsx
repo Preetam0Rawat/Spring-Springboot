@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from './security/AuthContext'
 export default function LoginComponent() {
-    const [username, setUsername] = useState("in28minutes")
-    const [password, setPassword] = useState("dummy")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     const [showErrorMessage, setShowErrorMessage] = useState(false)
 

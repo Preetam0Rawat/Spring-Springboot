@@ -1,10 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.jwt;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.*;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
@@ -32,4 +31,10 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtTokenResponse(jwt));
     }
+
+    // ✅ moved from file3
+    public record JwtTokenRequest(String username, String password) {}
+
+    // ✅ moved from file4
+    public record JwtTokenResponse(String token) {}
 }
