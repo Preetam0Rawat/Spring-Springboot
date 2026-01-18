@@ -9,3 +9,6 @@ export const executeBasicAuthenticationService
 
 export const executeJwtAuthenticationService 
         = (username, password) => apiClient.post('/authenticate', {username, password})
+
+export const executeSignupService 
+= (username, password) => apiClient.post("/signup", { username, password })
